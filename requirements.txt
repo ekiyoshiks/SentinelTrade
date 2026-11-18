@@ -1,0 +1,8 @@
+fastapi>=0.110
+uvicorn>=0.29
+SQLAlchemy>=2.0
+pydantic>=2.6
+argon2-cffi>=23.1
+itsdangerous>=2.1
+python-multipart>=0.0.9
+# PostgreSQL (opcional): psycopg[binary]>=3.1

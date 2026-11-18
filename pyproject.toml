@@ -1,0 +1,20 @@
+[project]
+name = "sentineltrade"
+version = "0.2.0"
+description = "SentinelTrade - plataforma simulada de negociação (Orion Capital). Etapa 2: implementação."
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+sentineltrade = ["dashboard/static/*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", "."]
+testpaths = ["tests"]
+addopts = "-q"
