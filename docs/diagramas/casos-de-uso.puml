@@ -1,0 +1,81 @@
+@startuml casos-de-uso
+' UML de Casos de Uso - SentinelTrade (Fase 1). Fonte versionada; para gerar a imagem:
+'   java -jar plantuml.jar -tsvg docs/diagramas/casos-de-uso.puml
+title SentinelTrade - Diagrama de Casos de Uso
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+actor "Investidor" as INV
+actor "Operador de Risco" as OPR
+actor "Administrador" as ADM
+actor "Auditor" as AUD
+actor "Tempo" as TMP <<temporal>>
+actor "Provedor de Cotações" as PRV <<sistema externo>>
+actor "Bolsa/Corretora Simulada" as BLS <<sistema externo>>
+actor "Serviço de Notificação" as NTF <<sistema externo>>
+
+rectangle "SentinelTrade" {
+  usecase "CSU01\nAutenticar com MFA" as CSU01
+  usecase "CSU02\nConsultar Cotações" as CSU02
+  usecase "CSU03\nConsultar Carteira" as CSU03
+  usecase "CSU04\nEnviar Ordem" as CSU04
+  usecase "CSU05\nAlterar Ordem" as CSU05
+  usecase "CSU06\nCancelar Ordem" as CSU06
+  usecase "CSU07\nAcompanhar Status da Ordem" as CSU07
+  usecase "CSU08\nConsultar Histórico de Operações" as CSU08
+  usecase "CSU09\nManter Investidores e Contas" as CSU09
+  usecase "CSU10\nManter Ativos" as CSU10
+  usecase "CSU11\nGerenciar Perfis de Acesso" as CSU11
+  usecase "CSU12\nDefinir Limites de Risco" as CSU12
+  usecase "CSU13\nAcionar Indisponibilidade Segura" as CSU13
+  usecase "CSU14\nConsultar Registros de Auditoria" as CSU14
+  usecase "CSU15\nAtualizar Cotações" as CSU15
+  usecase "CSU16\nProcessar Retorno da Bolsa" as CSU16
+  usecase "CSU17\nNotificar Investidor" as CSU17
+  usecase "CSU18\nReprocessar Ordens Pendentes" as CSU18
+}
+
+INV --> CSU02
+INV --> CSU03
+INV --> CSU04
+INV --> CSU05
+INV --> CSU06
+INV --> CSU07
+INV --> CSU08
+ADM --> CSU09
+ADM --> CSU10
+ADM --> CSU11
+OPR --> CSU12
+OPR --> CSU13
+AUD --> CSU14
+PRV --> CSU15
+BLS --> CSU16
+NTF --> CSU17
+TMP --> CSU18
+
+CSU04 --> BLS
+CSU05 --> BLS
+CSU06 --> BLS
+CSU16 --> NTF
+CSU18 --> BLS
+
+' Todo caso de uso do Investidor exige autenticação (os perfis internos também; linhas omitidas p/ legibilidade)
+CSU02 ..> CSU01 : <<include>>
+CSU03 ..> CSU01 : <<include>>
+CSU04 ..> CSU01 : <<include>>
+CSU05 ..> CSU01 : <<include>>
+CSU06 ..> CSU01 : <<include>>
+CSU07 ..> CSU01 : <<include>>
+CSU08 ..> CSU01 : <<include>>
+
+' Durante o acompanhamento o investidor pode, opcionalmente, alterar ou cancelar a ordem
+CSU05 ..> CSU07 : <<extend>>
+CSU06 ..> CSU07 : <<extend>>
+
+note as N1
+  Auditoria (RF-17) é pós-condição transversal
+  de todos os casos de uso; por isso não há
+  linhas para um caso "Registrar Auditoria".
+end note
+@enduml
