@@ -32,13 +32,13 @@ def entrar(sis, login):
 
 
 @pytest.fixture
-def ana(sis):
-    return entrar(sis, "ana")
+def vinicius(sis):
+    return entrar(sis, "vinicius")
 
 
 @pytest.fixture
-def bruno(sis):
-    return entrar(sis, "bruno")
+def pedro(sis):
+    return entrar(sis, "pedro")
 
 
 @pytest.fixture
