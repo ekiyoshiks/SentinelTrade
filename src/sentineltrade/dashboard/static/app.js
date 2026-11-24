@@ -46,11 +46,11 @@ const S = { usuario: null, view: null, timer: null, hist: {}, saude: null };
 function sessaoExpirou() { if (S.usuario) { S.usuario = null; toast('Sessão encerrada. Faça login novamente.', 'aviso'); renderLogin(); } }
 
 // ───────────────────────────── login (CSU01) ─────────────────────────────
-const LOGO = `<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0b1220" stroke="#23314f"/><path d="M16 5l9 4v7c0 5.5-3.8 9.3-9 11-5.2-1.7-9-5.5-9-11V9z" fill="none" stroke="#38bdf8" stroke-width="2.2"/><path d="M11 17l3.5 3.5L21 13" fill="none" stroke="#34d399" stroke-width="2.4"/></svg>`;
+const LOGO = `<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="2" fill="#11140f" stroke="#323a28"/><path d="M16 5l9 4v7c0 5.5-3.8 9.3-9 11-5.2-1.7-9-5.5-9-11V9z" fill="none" stroke="#b58a3e" stroke-width="2.2"/><path d="M11 17l3.5 3.5L21 13" fill="none" stroke="#6ea05f" stroke-width="2.4"/></svg>`;
 
 function renderLogin(etapa = 'senha', ctx = {}) {
   clearInterval(S.timer);
-  const demo = ['ana', 'bruno', 'carla', 'operador', 'admin', 'auditor'];
+  const demo = ['vinicius', 'pedro', 'enzo', 'rodrigo', 'operador', 'admin', 'auditor'];
   $('#app').innerHTML = `<div class="login-wrap"><div class="login-card">
     <div class="marca">${LOGO}<div><b>SentinelTrade</b><span>Orion Capital · ambiente simulado</span></div></div>
     ${etapa === 'senha' ? `
@@ -59,7 +59,8 @@ function renderLogin(etapa = 'senha', ctx = {}) {
         <label>Senha<input name="senha" type="password" required maxlength="200"></label>
         <button class="btn">Continuar</button>
       </form>
-      <div class="demo-users">Usuários de demonstração: ${demo.map(u => `<code data-demo="${u}">${u}</code>`).join(' ')}<br>Senha de demonstração: veja o README (<code>Orion@Demo2026</code>).</div>`
+      <div class="demo-users"><div class="rotulo">Acesso de demonstração</div><div class="lista">${demo.map(u => `<code data-demo="${u}">${u}</code>`).join('')}</div>
+        <div class="obs">Senha para todos: veja o README (<code>Orion@Demo2026</code>).</div></div>`
     : `
       <form id="f-mfa" autocomplete="off">
         <label>Código de verificação (6 dígitos)<input name="codigo" inputmode="numeric" pattern="\\d{6}" maxlength="6" required autofocus class="mono"></label>
