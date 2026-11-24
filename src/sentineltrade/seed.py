@@ -20,9 +20,10 @@ ATIVOS = [
 
 INVESTIDORES = [
     # login, nome, documento fictício, saldo, limite/ordem, limite/dia, posições iniciais
-    ("ana", "Ana Souza", "000.000.001-01", "250000", "100000", "500000", {"PETR4": 500, "VALE3": 300}),
-    ("bruno", "Bruno Lima", "000.000.002-02", "120000", "50000", "200000", {"ITUB4": 400}),
-    ("carla", "Carla Mendes", "000.000.003-03", "60000", "30000", "100000", {}),
+    ("vinicius", "Vinicius Tavares", "000.000.001-01", "250000", "100000", "500000", {"PETR4": 500, "VALE3": 300}),
+    ("pedro", "Pedro Albuquerque", "000.000.002-02", "120000", "50000", "200000", {"ITUB4": 400}),
+    ("enzo", "Enzo Ferraz", "000.000.003-03", "60000", "30000", "100000", {}),
+    ("rodrigo", "Rodrigo Montenegro", "000.000.004-04", "90000", "40000", "150000", {"BBAS3": 250, "MGLU3": 150}),
 ]
 
 INTERNOS = [("operador", Perfil.OPERADOR_RISCO), ("admin", Perfil.ADMINISTRADOR), ("auditor", Perfil.AUDITOR)]
